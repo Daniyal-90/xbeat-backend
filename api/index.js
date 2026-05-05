@@ -1,5 +1,6 @@
+const serverless = require("serverless-http");
+const app = require("../server");
+
 module.exports = (req, res) => {
-  return res.status(200).json({
-    message: "API is working ✅"
-  });
+  return serverless(app)(req, res);
 };
