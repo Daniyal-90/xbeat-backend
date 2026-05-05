@@ -35,8 +35,11 @@ app.use(V1_PATH, mainRoutes);
 /**
  * Health check
  */
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'API running 🚀' });
+app.get('/health', (req, res) => {
+  return res.status(200).json({
+    status: 'ok',
+    message: 'API running 🚀'
+  });
 });
 
 /**
