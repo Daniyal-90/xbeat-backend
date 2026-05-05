@@ -5,3 +5,8 @@ tests
 uploads
 datasets
 .env
+x-beat-conductor/
+x-beat-price-settler/
+crawler.js
+price-settler.js
+seed/
