@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-const { V1_PATH } = require('./shared/constants');
-const mainRoutes = require("./routes/index");
+//const { V1_PATH } = require('./shared/constants');
+//const mainRoutes = require("./routes/index");
 
 const app = express();
 
