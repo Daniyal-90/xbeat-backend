@@ -3,6 +3,6 @@ const app = require("../server");
 
 const handler = serverless(app);
 
-module.exports = async (req, res) => {
-  return await handler(req, res);
+module.exports = (req, res) => {
+  return handler(req, res);
 };
