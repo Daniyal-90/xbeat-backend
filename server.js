@@ -1,15 +1,14 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
+const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
-import { V1_PATH } from './shared/constants.js';
-import mainRoutes from './routes/index.js';
+const { V1_PATH } = require('./shared/constants');
+const mainRoutes = require("./routes/index");
 
 const app = express();
 
 /**
- * ✅ CORS
+ * CORS
  */
 app.use(cors({
   origin: [
@@ -23,43 +22,32 @@ app.use(cors({
 }));
 
 /**
- * ✅ Middleware
+ * Middleware
  */
 app.use(express.json());
 app.use(cookieParser());
 
 /**
- * ✅ Routes
+ * Routes
  */
 app.use(V1_PATH, mainRoutes);
 
 /**
- * ✅ Health check
+ * Health check
  */
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'API running 🚀' });
 });
 
 /**
- * ❌ REMOVE app.listen (NOT allowed on Vercel)
- * ❌ REMOVE direct mongoose.connect here
+ * Error handler
  */
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Something went wrong!', error: err.message });
+});
 
 /**
- * ✅ Lazy MongoDB connection (serverless safe)
+ * ✅ IMPORTANT: export app only
  */
-let isConnected = false;
-
-export async function connectDB() {
-  if (isConnected) return;
-
-  await mongoose.connect(process.env.MONGODB_URI);
-  isConnected = true;
-
-  console.log("MongoDB connectedddd ✅");
-}
-
-/**
- * ✅ Export app (VERY IMPORTANT)
- */
-export default app;
+module.exports = app;

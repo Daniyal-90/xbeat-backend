@@ -1,7 +1,7 @@
 {
   "name": "bachat-bazaar-backend",
   "version": "1.0.0",
-  "type": "module",
+  "type": "commonjs",
   "description": "Bachat Bazaar E-Commerce Backend",
   "main": "server.js",
   "scripts": {
