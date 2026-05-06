@@ -18,6 +18,8 @@ if (process.env.TRUST_PROXY === 'true' || process.env.NODE_ENV === 'production')
 app.use(cors({
   origin: [
     process.env.FRONTEND_URL,
+    process.env.FRONTEND_BACHAT_BAZAAR_URL,
+    process.env.FRONTEND_SHOPHUB_URL,
     'http://localhost:5173',
     'http://localhost:3000',
     'http://localhost:3001',
